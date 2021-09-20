@@ -1,15 +1,15 @@
 import {BrowserRouter as Router, Switch, Redirect, Route} from "react-router-dom";
-import HomePage from "./components/Router/HomePage";
-import FavoritePage from "./components/Router/FavoritePage";
-import Appbar from "./components/UI/Appbar";
-
+import HomePage from "./router/HomePage";
+import FavoritePage from "./router/FavoritePage";
+import Appbar from "./components/ui/Appbar";
+import Theme from "./components/ui/Theme";
 
 
 function App() {
     return (
-        <div>
-            <Appbar/>
-            <Router>
+        <Router>
+            <Theme>
+                <Appbar/>
                 <Switch>
                     <Route path={'/home'}>
                         <HomePage/>
@@ -19,9 +19,8 @@ function App() {
                     </Route>
                     <Redirect to={'/home'}/>
                 </Switch>
-            </Router>
-        </div>
-
+            </Theme>
+        </Router>
     );
 }
 

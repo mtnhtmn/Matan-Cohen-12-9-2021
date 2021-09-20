@@ -12,13 +12,13 @@ export const forecastReducer =  (state = initialState, action) => {
         case 'FETCH_FORECAST_DATA_SUCCESS':
             return {
                 ...state,
-                cityData: action.data,
+                forecastData: action.payload.forecastData,
                 error: ''
             }
         case 'FETCH_FORECAST_DATA_FAILED':
             return {
                 ...state,
-                cityData: [],
+                forecastData: [],
                 error: action.errorMessage,
             }
         default:
