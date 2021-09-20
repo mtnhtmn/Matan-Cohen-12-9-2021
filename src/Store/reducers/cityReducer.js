@@ -1,6 +1,8 @@
 const initialState = {
     loading: false,
-    cityData: null,
+    cityData: {
+        Key:'215854'
+    },
     error: '',
 }
 

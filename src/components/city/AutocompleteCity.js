@@ -67,7 +67,9 @@ export default function AutocompleteCity() {
             onChange={(event, newValue) => {
                 setOptions(newValue ? [newValue, ...options] : options);
                 setValue(newValue);
-                history.push(`/home?cityName=${newValue.LocalizedName}`)
+                if(newValue){
+                    history.push(`/home?cityName=${newValue.LocalizedName}`)
+                }
 
             }}
             onInputChange={(event, newInputValue) => {

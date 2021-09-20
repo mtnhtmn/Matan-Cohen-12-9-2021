@@ -1,7 +1,8 @@
 import React from 'react';
 import Forecast from "../forecast/Forecast";
-import {Card, CardContent, Typography} from "@mui/material";
+import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import {makeStyles} from "@mui/styles";
+import {Star as StarIcon} from '@mui/icons-material'
 
 const useStyles = makeStyles({
     bullet: {
@@ -21,25 +22,28 @@ const useStyles = makeStyles({
     }
 });
 
-const CityCard = ({cityData,weatherData, forecastData}) => {
-
-
+const CityCard = ({cityData,temperature, forecastData,addToFav,isInFav,weatherText}) => {
     const classes = useStyles();
     return (
         <Card variant="outlined">
             <CardContent>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
-                    {cityData.EnglishName}: {weatherData.Temperature.Metric.Value}
+                    {cityData.EnglishName}: {temperature}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
                     {cityData.Country.EnglishName}
                 </Typography>
                 <Forecast forecastData={forecastData}/>
             </CardContent>
+            <CardActions>
+                <Button onClick={()=>addToFav(cityData,temperature,weatherText)}>
+                    add to fav
+                </Button>
+                {isInFav && <StarIcon/>}
+            </CardActions>
         </Card>
     );
 }
-
 
 export default CityCard
 

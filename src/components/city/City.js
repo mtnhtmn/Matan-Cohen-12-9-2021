@@ -4,9 +4,10 @@ import {connect} from "react-redux";
 import CityCard from "./CityCard";
 import {getForecast} from "../../store/actions/forecastAction";
 import {getWeather} from "../../store/actions/weatherAction";
+import {addToFav} from "../../store/actions/favAction";
 
 
-const City = ({getCity, getForecast, getWeather, cityData, weatherData, forecastData, cityName}) => {
+const City = ({getCity, getForecast, getWeather, cityData, weatherData, forecastData,fav, addToFav, cityName}) => {
 
     const loadData = async () => {
         await getCity(cityName)
@@ -17,13 +18,11 @@ const City = ({getCity, getForecast, getWeather, cityData, weatherData, forecast
     React.useEffect(() => {
         loadData()
     }, [getCity, getForecast, getWeather, cityName])
-
-
     return (
 
         cityData && weatherData && forecastData &&
 
-        <CityCard cityData={cityData} weatherData={weatherData} forecastData={forecastData}/>
+        <CityCard isInFav={fav.find(item=>item.Key===cityData.Key)} addToFav={addToFav} cityData={cityData} temperature={weatherData.Temperature.Metric.Value} weatherText={weatherData.WeatherText} forecastData={forecastData}/>
 
     );
 };
@@ -35,8 +34,9 @@ const mapStateToProps = state => {
         weatherData: state.weatherReducer.weatherData,
         error: state.cityReducer.error,
         forecastData: state.forecastReducer.forecastData,
+        fav: state.favReducer.fav,
     }
 }
-export default connect(mapStateToProps, {getCity, getWeather, getForecast})(City);
+export default connect(mapStateToProps, {getCity, getWeather, getForecast, addToFav})(City);
 
 
