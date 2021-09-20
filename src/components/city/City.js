@@ -9,15 +9,15 @@ import {addToFav} from "../../store/actions/favAction";
 
 const City = ({getCity, getForecast, getWeather, cityData, weatherData, forecastData,fav, addToFav, cityName}) => {
 
-    const loadData = async () => {
+    const loadData =React.useCallback( async () => {
         await getCity(cityName)
         getForecast()
         getWeather()
-    }
+    },[cityName,getCity,getForecast,getWeather])
 
     React.useEffect(() => {
         loadData()
-    }, [getCity, getForecast, getWeather, cityName])
+    }, [loadData,getCity, getForecast, getWeather, cityName])
     return (
 
         cityData && weatherData && forecastData &&
