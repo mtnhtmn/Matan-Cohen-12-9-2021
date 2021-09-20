@@ -4,7 +4,7 @@ export const getWeather = () => {
     return (dispatch,getState) => {
         dispatch({type: 'FETCH_WEATHER_DATA'})
         const cityData = getState().cityReducer.cityData
-        axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${cityData.Key}?apikey=xevDxA5DrqpWPmxG3UWazN5As6P6poAw`
+        axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${cityData.Key}?apikey=xevDxA5DrqpWPmxG3UWazN5As6P6poAw`
         )
             .then(response => {
                 const data = response.data

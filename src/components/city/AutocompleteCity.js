@@ -15,7 +15,7 @@ export default function AutocompleteCity() {
     const fetch = React.useMemo(
         () =>
             throttle((inputValue, callback) => {
-                axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=xevDxA5DrqpWPmxG3UWazN5As6P6poAw&q=${inputValue}`).then((response) => {
+                axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=xevDxA5DrqpWPmxG3UWazN5As6P6poAw&q=${inputValue}`).then((response) => {
                     callback(response.data)
                 })
             }, 200),
